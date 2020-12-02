@@ -1,0 +1,40 @@
+{
+  "generator-jhipster": {
+    "promptValues": {
+      "packageName": "blackwidow.c2"
+    },
+    "jhipsterVersion": "6.10.5",
+    "applicationType": "monolith",
+    "baseName": "BlackWidowC2",
+    "packageName": "blackwidow.c2",
+    "packageFolder": "blackwidow/c2",
+    "serverPort": "8080",
+    "authenticationType": "jwt",
+    "cacheProvider": "no",
+    "websocket": false,
+    "databaseType": "sql",
+    "devDatabaseType": "postgresql",
+    "prodDatabaseType": "postgresql",
+    "searchEngine": false,
+    "messageBroker": false,
+    "serviceDiscoveryType": "eureka",
+    "buildTool": "maven",
+    "enableSwaggerCodegen": false,
+    "jwtSecretKey": "Y2Q1Y2I4OWJiNmMyMjNlODY3ZGE0ZWE0NDU5ZDEzMDIyY2JiMDUzMGQ3MTM2MDNlNDUxMzJlZGYwNzZiYmMyNzQ1ZTllNTYwYjZlNWE4OGRlNjY2Yjk2YmIwNzQ5ZTZhOTczYmMyY2UwZjliY2ExMzQ3YTVjNTE4MzFlNGRiNzk=",
+    "embeddableLaunchScript": false,
+    "useSass": true,
+    "clientPackageManager": "npm",
+    "clientFramework": "react",
+    "clientTheme": "cyborg",
+    "clientThemeVariant": "dark",
+    "creationTimestamp": 1606921328324,
+    "testFrameworks": [],
+    "jhiPrefix": "jhi",
+    "entitySuffix": "",
+    "dtoSuffix": "DTO",
+    "otherModules": [],
+    "enableTranslation": false,
+    "blueprints": [],
+    "lastLiquibaseTimestamp": 1606924040000
+  }
+}
