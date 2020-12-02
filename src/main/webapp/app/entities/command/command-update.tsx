@@ -43,8 +43,6 @@ export const CommandUpdate = (props: ICommandUpdateProps) => {
   }, [props.updateSuccess]);
 
   const saveEntity = (event, errors, values) => {
-    values.sendTime = convertDateTimeToServer(values.sendTime);
-
     if (errors.length === 0) {
       const entity = {
         ...commandEntity,
