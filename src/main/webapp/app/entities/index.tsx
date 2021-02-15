@@ -6,6 +6,7 @@ import ErrorBoundaryRoute from 'app/shared/error/error-boundary-route';
 
 import Agent from './agent';
 import Command from './command';
+import Artifact from './artifact';
 /* jhipster-needle-add-route-import - JHipster will add routes here */
 
 const Routes = ({ match }) => (
@@ -14,6 +15,7 @@ const Routes = ({ match }) => (
       {/* prettier-ignore */}
       <ErrorBoundaryRoute path={`${match.url}agent`} component={Agent} />
       <ErrorBoundaryRoute path={`${match.url}command`} component={Command} />
+      <ErrorBoundaryRoute path={`${match.url}artifact`} component={Artifact} />
       {/* jhipster-needle-add-route-path - JHipster will add routes here */}
     </Switch>
   </div>

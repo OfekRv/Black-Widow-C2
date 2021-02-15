@@ -1,0 +1,41 @@
+{
+  "fluentMethods": true,
+  "clientRootFolder": "",
+  "relationships": [
+    {
+      "relationshipName": "agent",
+      "otherEntityName": "agent",
+      "relationshipType": "one-to-many",
+      "otherEntityRelationshipName": "artifact"
+    },
+    {
+      "relationshipName": "agent",
+      "otherEntityName": "agent",
+      "relationshipType": "many-to-one",
+      "relationshipValidateRules": ["required"],
+      "otherEntityField": "id",
+      "otherEntityRelationshipName": "artifact"
+    }
+  ],
+  "fields": [
+    {
+      "fieldName": "receiveTime",
+      "fieldType": "ZonedDateTime",
+      "fieldValidateRules": []
+    },
+    {
+      "fieldName": "content",
+      "fieldType": "String",
+      "fieldValidateRules": []
+    }
+  ],
+  "changelogDate": "20210215192148",
+  "dto": "no",
+  "searchEngine": false,
+  "service": "serviceImpl",
+  "entityTableName": "artifact",
+  "databaseType": "sql",
+  "readOnly": true,
+  "jpaMetamodelFiltering": true,
+  "pagination": "pagination"
+}
