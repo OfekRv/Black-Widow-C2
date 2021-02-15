@@ -1,20 +1,22 @@
 package blackwidow.c2.domain;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import lombok.AllArgsConstructor;
+import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
-import javax.validation.constraints.*;
-
+import javax.validation.constraints.NotNull;
 import java.io.Serializable;
 import java.time.ZonedDateTime;
-import java.util.HashSet;
-import java.util.Set;
 
 /**
  * A Artifact.
  */
 @Entity
 @Table(name = "artifact")
+
+@AllArgsConstructor
+@NoArgsConstructor
 public class Artifact implements Serializable {
 
     private static final long serialVersionUID = 1L;
@@ -34,6 +36,15 @@ public class Artifact implements Serializable {
     @NotNull
     @JsonIgnoreProperties(value = "artifacts", allowSetters = true)
     private Agent agent;
+
+    public Artifact() {
+    }
+
+    public Artifact(ZonedDateTime receiveTime, String content, Agent agent) {
+        this.receiveTime = receiveTime;
+        this.content = content;
+        this.agent = agent;
+    }
 
     // jhipster-needle-entity-add-field - JHipster will add fields here
     public Long getId() {

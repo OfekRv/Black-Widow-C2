@@ -2,7 +2,6 @@ package blackwidow.c2.domain;
 
 
 import javax.persistence.*;
-
 import java.io.Serializable;
 import java.time.ZonedDateTime;
 import java.util.HashSet;
@@ -30,6 +29,14 @@ public class Agent implements Serializable {
 
     @OneToMany(mappedBy = "agent")
     private Set<Command> commands = new HashSet<>();
+
+    public Agent() {
+    }
+
+    public Agent(String ip, ZonedDateTime lastActive) {
+        this.ip = ip;
+        this.lastActive = lastActive;
+    }
 
     // jhipster-needle-entity-add-field - JHipster will add fields here
     public Long getId() {
