@@ -1,8 +1,9 @@
 package blackwidow.c2.domain;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
-import lombok.AllArgsConstructor;
-import lombok.NoArgsConstructor;
+import com.vladmihalcea.hibernate.type.json.JsonBinaryType;
+import org.hibernate.annotations.Type;
+import org.hibernate.annotations.TypeDef;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
@@ -14,9 +15,8 @@ import java.time.ZonedDateTime;
  */
 @Entity
 @Table(name = "artifact")
+@TypeDef(name = "jsonb", typeClass = JsonBinaryType.class)
 
-@AllArgsConstructor
-@NoArgsConstructor
 public class Artifact implements Serializable {
 
     private static final long serialVersionUID = 1L;
@@ -29,7 +29,8 @@ public class Artifact implements Serializable {
     @Column(name = "receive_time")
     private ZonedDateTime receiveTime;
 
-    @Column(name = "content")
+    @Column(name = "content", columnDefinition = "json")
+    @Type(type = "jsonb")
     private String content;
 
     @ManyToOne(optional = false)
