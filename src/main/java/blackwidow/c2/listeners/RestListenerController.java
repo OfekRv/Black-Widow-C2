@@ -26,7 +26,7 @@ public class RestListenerController {
     public void submit(@RequestBody IncomingArtifactDto artifact) {
         String agentIp = artifact.getAgentIp();
         Agent sendingAgent = agentRepository.findByIp(agentIp)
-            .orElse(agentRepository.save(new Agent(agentIp, ZonedDateTime.now())));
+            .orElseGet(() -> agentRepository.save(new Agent(agentIp, ZonedDateTime.now())));
 
         artifactRepository.save(new Artifact(ZonedDateTime.now(), artifact.getContent(), sendingAgent));
     }

@@ -21,7 +21,7 @@ public class Agent implements Serializable {
     @SequenceGenerator(name = "sequenceGenerator")
     private Long id;
 
-    @Column(name = "ip")
+    @Column(name = "ip", unique = true)
     private String ip;
 
     @Column(name = "last_active")
