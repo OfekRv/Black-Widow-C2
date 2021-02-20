@@ -29,5 +29,8 @@ public class RestListenerController {
             .orElseGet(() -> agentRepository.save(new Agent(agentIp, ZonedDateTime.now())));
 
         artifactRepository.save(new Artifact(ZonedDateTime.now(), artifact.getContent(), sendingAgent));
+
+        sendingAgent.setLastActive(ZonedDateTime.now());
+        agentRepository.save(sendingAgent);
     }
 }
