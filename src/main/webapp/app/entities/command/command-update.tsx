@@ -7,6 +7,8 @@ import { ICrudGetAction, ICrudGetAllAction, ICrudPutAction } from 'react-jhipste
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { IRootState } from 'app/shared/reducers';
 
+import { ICommandType } from 'app/shared/model/command-type.model';
+import { getEntities as getCommandTypes } from 'app/entities/command-type/command-type.reducer';
 import { IAgent } from 'app/shared/model/agent.model';
 import { getEntities as getAgents } from 'app/entities/agent/agent.reducer';
 import { getEntity, updateEntity, createEntity, reset } from './command.reducer';
@@ -17,10 +19,11 @@ import { mapIdList } from 'app/shared/util/entity-utils';
 export interface ICommandUpdateProps extends StateProps, DispatchProps, RouteComponentProps<{ id: string }> {}
 
 export const CommandUpdate = (props: ICommandUpdateProps) => {
+  const [typeId, setTypeId] = useState('0');
   const [agentId, setAgentId] = useState('0');
   const [isNew, setIsNew] = useState(!props.match.params || !props.match.params.id);
 
-  const { commandEntity, agents, loading, updating } = props;
+  const { commandEntity, commandTypes, agents, loading, updating } = props;
 
   const handleClose = () => {
     props.history.push('/command');
@@ -33,6 +36,7 @@ export const CommandUpdate = (props: ICommandUpdateProps) => {
       props.getEntity(props.match.params.id);
     }
 
+    props.getCommandTypes();
     props.getAgents();
   }, []);
 
@@ -61,7 +65,7 @@ export const CommandUpdate = (props: ICommandUpdateProps) => {
     <div>
       <Row className="justify-content-center">
         <Col md="8">
-          <h2 id="blackWidowC2App.command.home.createOrEditLabel">Create or edit a Command</h2>
+          <h2 id="blackWidowC2App.command.home.createOrEditLabel">Create Command</h2>
         </Col>
       </Row>
       <Row className="justify-content-center">
@@ -77,23 +81,35 @@ export const CommandUpdate = (props: ICommandUpdateProps) => {
                 </AvGroup>
               ) : null}
               <AvGroup>
-                <Label id="typeLabel" for="command-type">
-                  Type
-                </Label>
+                <Label for="command-type">Type</Label>
                 <AvInput
                   id="command-type"
                   type="select"
                   className="form-control"
-                  name="type"
-                  value={(!isNew && commandEntity.type) || 'ISALIVE'}
+                  name="type.id"
+                  value={isNew ? commandTypes[0] && commandTypes[0].id : commandEntity.type?.id}
+                  required
                 >
-                  <option value="ISALIVE">ISALIVE</option>
+                  {commandTypes
+                    ? commandTypes.map(otherEntity => (
+                        <option value={otherEntity.id} key={otherEntity.id}>
+                          {otherEntity.name}
+                        </option>
+                      ))
+                    : null}
                 </AvInput>
+                <AvFeedback>This field is required.</AvFeedback>
               </AvGroup>
               <AvGroup>
                 <Label for="command-agent">Agent</Label>
-                <AvInput id="command-agent" type="select" className="form-control" name="agent.id">
-                  <option value="" key="0" />
+                <AvInput
+                  id="command-agent"
+                  type="select"
+                  className="form-control"
+                  name="agent.id"
+                  value={isNew ? agents[0] && agents[0].id : commandEntity.agent?.id}
+                  required
+                >
                   {agents
                     ? agents.map(otherEntity => (
                         <option value={otherEntity.id} key={otherEntity.id}>
@@ -102,6 +118,7 @@ export const CommandUpdate = (props: ICommandUpdateProps) => {
                       ))
                     : null}
                 </AvInput>
+                <AvFeedback>This field is required.</AvFeedback>
               </AvGroup>
               <Button tag={Link} id="cancel-save" to="/command" replace color="info">
                 <FontAwesomeIcon icon="arrow-left" />
@@ -122,6 +139,7 @@ export const CommandUpdate = (props: ICommandUpdateProps) => {
 };
 
 const mapStateToProps = (storeState: IRootState) => ({
+  commandTypes: storeState.commandType.entities,
   agents: storeState.agent.entities,
   commandEntity: storeState.command.entity,
   loading: storeState.command.loading,
@@ -130,6 +148,7 @@ const mapStateToProps = (storeState: IRootState) => ({
 });
 
 const mapDispatchToProps = {
+  getCommandTypes,
   getAgents,
   getEntity,
   updateEntity,

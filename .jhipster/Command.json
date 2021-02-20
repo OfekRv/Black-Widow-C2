@@ -3,9 +3,18 @@
   "clientRootFolder": "",
   "relationships": [
     {
+      "relationshipName": "type",
+      "otherEntityName": "commandType",
+      "relationshipType": "many-to-one",
+      "relationshipValidateRules": ["required"],
+      "otherEntityField": "name",
+      "otherEntityRelationshipName": "command"
+    },
+    {
       "relationshipName": "agent",
       "otherEntityName": "agent",
       "relationshipType": "many-to-one",
+      "relationshipValidateRules": ["required"],
       "otherEntityField": "id",
       "otherEntityRelationshipName": "command"
     }
@@ -19,11 +28,6 @@
       "fieldName": "status",
       "fieldType": "CommandStatus",
       "fieldValues": "NEW,SENT,DONE"
-    },
-    {
-      "fieldName": "type",
-      "fieldType": "CommandType",
-      "fieldValues": "ISALIVE"
     }
   ],
   "changelogDate": "20201202154720",

@@ -23,6 +23,10 @@ import command, {
 import artifact, {
   ArtifactState
 } from 'app/entities/artifact/artifact.reducer';
+// prettier-ignore
+import commandType, {
+  CommandTypeState
+} from 'app/entities/command-type/command-type.reducer';
 /* jhipster-needle-add-reducer-import - JHipster will add reducer here */
 
 export interface IRootState {
@@ -38,6 +42,7 @@ export interface IRootState {
   readonly agent: AgentState;
   readonly command: CommandState;
   readonly artifact: ArtifactState;
+  readonly commandType: CommandTypeState;
   /* jhipster-needle-add-reducer-type - JHipster will add reducer type here */
   readonly loadingBar: any;
 }
@@ -55,6 +60,7 @@ const rootReducer = combineReducers<IRootState>({
   agent,
   command,
   artifact,
+  commandType,
   /* jhipster-needle-add-reducer-combine - JHipster will add reducer here */
   loadingBar,
 });

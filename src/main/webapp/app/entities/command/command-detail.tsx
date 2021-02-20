@@ -33,10 +33,8 @@ export const CommandDetail = (props: ICommandDetailProps) => {
             <span id="status">Status</span>
           </dt>
           <dd>{commandEntity.status}</dd>
-          <dt>
-            <span id="type">Type</span>
-          </dt>
-          <dd>{commandEntity.type}</dd>
+          <dt>Type</dt>
+          <dd>{commandEntity.type ? commandEntity.type.name : ''}</dd>
           <dt>Agent</dt>
           <dd>{commandEntity.agent ? commandEntity.agent.id : ''}</dd>
         </dl>

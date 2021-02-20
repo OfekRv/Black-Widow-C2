@@ -8,6 +8,12 @@
     -->
     <changeSet id="20201202154720-2" author="jhipster">
         
+        <addForeignKeyConstraint baseColumnNames="type_id"
+                                 baseTableName="command"
+                                 constraintName="fk_command_type_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="command_type"/>
+
         <addForeignKeyConstraint baseColumnNames="agent_id"
                                  baseTableName="command"
                                  constraintName="fk_command_agent_id"

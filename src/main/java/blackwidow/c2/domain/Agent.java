@@ -82,18 +82,6 @@ public class Agent implements Serializable {
         return this;
     }
 
-    public Agent addCommands(Command command) {
-        this.commands.add(command);
-        command.setAgent(this);
-        return this;
-    }
-
-    public Agent removeCommands(Command command) {
-        this.commands.remove(command);
-        command.setAgent(null);
-        return this;
-    }
-
     public void setCommands(Set<Command> commands) {
         this.commands = commands;
     }

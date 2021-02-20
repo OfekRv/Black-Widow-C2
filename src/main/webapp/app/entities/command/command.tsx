@@ -50,12 +50,18 @@ export const Command = (props: ICommandProps) => {
                   </td>
                   <td>{command.sendTime ? <TextFormat type="date" value={command.sendTime} format={APP_DATE_FORMAT} /> : null}</td>
                   <td>{command.status}</td>
-                  <td>{command.type}</td>
+                  <td>{command.type ? <Link to={`command-type/${command.type.id}`}>{command.type.name}</Link> : ''}</td>
                   <td>{command.agent ? <Link to={`agent/${command.agent.id}`}>{command.agent.id}</Link> : ''}</td>
                   <td className="text-right">
                     <div className="btn-group flex-btn-group-container">
                       <Button tag={Link} to={`${match.url}/${command.id}`} color="info" size="sm">
                         <FontAwesomeIcon icon="eye" /> <span className="d-none d-md-inline">View</span>
+                      </Button>
+                      <Button tag={Link} to={`${match.url}/${command.id}/edit`} color="primary" size="sm">
+                        <FontAwesomeIcon icon="pencil-alt" /> <span className="d-none d-md-inline">Edit</span>
+                      </Button>
+                      <Button tag={Link} to={`${match.url}/${command.id}/delete`} color="danger" size="sm">
+                        <FontAwesomeIcon icon="trash" /> <span className="d-none d-md-inline">Delete</span>
                       </Button>
                     </div>
                   </td>

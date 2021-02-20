@@ -3,13 +3,12 @@ package blackwidow.c2.domain;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 import javax.persistence.*;
+import javax.validation.constraints.*;
 
 import java.io.Serializable;
 import java.time.ZonedDateTime;
 
 import blackwidow.c2.domain.enumeration.CommandStatus;
-
-import blackwidow.c2.domain.enumeration.CommandType;
 
 /**
  * A Command.
@@ -32,11 +31,13 @@ public class Command implements Serializable {
     @Column(name = "status")
     private CommandStatus status = CommandStatus.NEW;
 
-    @Enumerated(EnumType.STRING)
-    @Column(name = "type")
+    @ManyToOne(optional = false)
+    @NotNull
+    @JsonIgnoreProperties(value = "types", allowSetters = true)
     private CommandType type;
 
-    @ManyToOne
+    @ManyToOne(optional = false)
+    @NotNull
     @JsonIgnoreProperties(value = "commands", allowSetters = true)
     private Agent agent;
 
@@ -79,13 +80,13 @@ public class Command implements Serializable {
         return type;
     }
 
-    public Command type(CommandType type) {
-        this.type = type;
+    public Command type(CommandType commandType) {
+        this.type = commandType;
         return this;
     }
 
-    public void setType(CommandType type) {
-        this.type = type;
+    public void setType(CommandType commandType) {
+        this.type = commandType;
     }
 
     public Agent getAgent() {
@@ -125,7 +126,6 @@ public class Command implements Serializable {
             "id=" + getId() +
             ", sendTime='" + getSendTime() + "'" +
             ", status='" + getStatus() + "'" +
-            ", type='" + getType() + "'" +
             "}";
     }
 }
