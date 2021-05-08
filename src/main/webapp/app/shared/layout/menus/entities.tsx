@@ -20,6 +20,9 @@ export const EntitiesMenu = props => (
     <MenuItem icon="asterisk" to="/command-type">
       Command Type
     </MenuItem>
+    <MenuItem icon="asterisk" to="/archived-async-artifact">
+      Archived Async Artifact
+    </MenuItem>
     {/* jhipster-needle-add-entity-to-menu - JHipster will add entities to the menu here */}
   </NavDropdown>
 );

@@ -35,7 +35,7 @@
     "otherModules": [],
     "enableTranslation": false,
     "blueprints": [],
-    "lastLiquibaseTimestamp": 1613844593000,
+    "lastLiquibaseTimestamp": 1620466883000,
     "appsFolders": ["Black-Widow"],
     "directoryPath": "../",
     "monitoring": "no",

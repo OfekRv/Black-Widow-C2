@@ -1,0 +1,24 @@
+{
+  "fluentMethods": true,
+  "clientRootFolder": "",
+  "relationships": [],
+  "fields": [
+    {
+      "fieldName": "messageId",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "consumeTime",
+      "fieldType": "ZonedDateTime"
+    }
+  ],
+  "changelogDate": "20210508094123",
+  "dto": "no",
+  "searchEngine": false,
+  "service": "no",
+  "entityTableName": "archived_async_artifact",
+  "databaseType": "sql",
+  "readOnly": true,
+  "jpaMetamodelFiltering": false,
+  "pagination": "no"
+}

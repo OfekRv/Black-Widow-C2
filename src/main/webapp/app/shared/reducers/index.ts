@@ -27,6 +27,10 @@ import artifact, {
 import commandType, {
   CommandTypeState
 } from 'app/entities/command-type/command-type.reducer';
+// prettier-ignore
+import archivedAsyncArtifact, {
+  ArchivedAsyncArtifactState
+} from 'app/entities/archived-async-artifact/archived-async-artifact.reducer';
 /* jhipster-needle-add-reducer-import - JHipster will add reducer here */
 
 export interface IRootState {
@@ -43,6 +47,7 @@ export interface IRootState {
   readonly command: CommandState;
   readonly artifact: ArtifactState;
   readonly commandType: CommandTypeState;
+  readonly archivedAsyncArtifact: ArchivedAsyncArtifactState;
   /* jhipster-needle-add-reducer-type - JHipster will add reducer type here */
   readonly loadingBar: any;
 }
@@ -61,6 +66,7 @@ const rootReducer = combineReducers<IRootState>({
   command,
   artifact,
   commandType,
+  archivedAsyncArtifact,
   /* jhipster-needle-add-reducer-combine - JHipster will add reducer here */
   loadingBar,
 });

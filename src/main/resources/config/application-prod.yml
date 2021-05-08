@@ -141,4 +141,12 @@ jhipster:
 # https://www.jhipster.tech/common-application-properties/
 # ===================================================================
 
-# application:
+#application:
+
+TWITTER_USERNAME: INSERT_HERE
+LISTENER_EXECUTION_INITIAL_DELAY: 20000
+LISTENER_EXECUTION_FIXED_DELAY: 20000
+TWITTER_CONSUMER_KEY: INSERT_HERE
+TWITTER_CONSUMER_SECRET: INSERT_HERE
+TWITTER_ACCESS_TOKEN: INSERT_HERE
+TWITTER_ACCESS_TOKEN_SECRET: INSERT_HERE

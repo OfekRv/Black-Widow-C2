@@ -8,6 +8,7 @@ import Agent from './agent';
 import Command from './command';
 import Artifact from './artifact';
 import CommandType from './command-type';
+import ArchivedAsyncArtifact from './archived-async-artifact';
 /* jhipster-needle-add-route-import - JHipster will add routes here */
 
 const Routes = ({ match }) => (
@@ -18,6 +19,7 @@ const Routes = ({ match }) => (
       <ErrorBoundaryRoute path={`${match.url}command`} component={Command} />
       <ErrorBoundaryRoute path={`${match.url}artifact`} component={Artifact} />
       <ErrorBoundaryRoute path={`${match.url}command-type`} component={CommandType} />
+      <ErrorBoundaryRoute path={`${match.url}archived-async-artifact`} component={ArchivedAsyncArtifact} />
       {/* jhipster-needle-add-route-path - JHipster will add routes here */}
     </Switch>
   </div>
