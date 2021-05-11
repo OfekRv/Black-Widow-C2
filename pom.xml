@@ -324,6 +324,17 @@
             <version>2.4.3</version>
         </dependency>
         <!-- jhipster-needle-maven-add-dependency -->
+        <!-- https://mvnrepository.com/artifact/com.tumblr/jumblr -->
+        <dependency>
+            <groupId>com.tumblr</groupId>
+            <artifactId>jumblr</artifactId>
+            <version>0.0.6</version>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.httpcomponents</groupId>
+            <artifactId>httpclient</artifactId>
+            <version>4.5.13</version>
+        </dependency>
     </dependencies>
 
     <build>
