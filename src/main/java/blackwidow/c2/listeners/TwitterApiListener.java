@@ -14,13 +14,14 @@ import twitter4j.Status;
 
 import javax.imageio.ImageIO;
 import javax.inject.Inject;
+import javax.inject.Named;
 import java.awt.image.BufferedImage;
 import java.io.IOException;
 import java.net.URL;
 import java.util.Collection;
 
 @Slf4j
-//@Named
+@Named
 public class TwitterApiListener implements TwitterListener {
     private static final int FIRST_MEDIA = 0;
 
@@ -46,7 +47,7 @@ public class TwitterApiListener implements TwitterListener {
                 IncomingArtifactDto artifact = extractArtifact(tweet, decoder, mapper);
                 bl.processMessage(Long.toString(tweet.getId()), artifact);
             } catch (TwitterListenerException e) {
-                // log.error("Could not process message " + tweet.getId(), e);
+                e.printStackTrace();
             }
         }
     }

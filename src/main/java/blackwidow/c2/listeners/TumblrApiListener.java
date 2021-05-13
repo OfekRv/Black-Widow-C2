@@ -66,7 +66,7 @@ public class TumblrApiListener implements TumblrListener {
                 IncomingArtifactDto artifact = extractArtifact(post, decoder, mapper);
                 bl.processMessage(Long.toString(post.getId()), artifact);
             } catch (TwitterListenerException e) {
-                // log.error("Could not process message " + post.getId(), e);
+                e.printStackTrace();
             }
         }
     }
