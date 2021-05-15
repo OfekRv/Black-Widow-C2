@@ -2,7 +2,6 @@ package blackwidow.c2.domain;
 
 
 import javax.persistence.*;
-
 import java.io.Serializable;
 import java.time.ZonedDateTime;
 
@@ -26,12 +25,17 @@ public class ArchivedAsyncArtifact implements Serializable {
     @Column(name = "consume_time")
     private ZonedDateTime consumeTime;
 
-    public ArchivedAsyncArtifact(String messageId, ZonedDateTime consumeTime) {
+    @Column(name = "sent_time")
+    private ZonedDateTime sentTime;
+
+    public ArchivedAsyncArtifact(String messageId, ZonedDateTime sentTime) {
         this.messageId = messageId;
-        this.consumeTime = consumeTime;
+        this.sentTime = sentTime;
+        this.consumeTime = ZonedDateTime.now();
     }
 
-    public ArchivedAsyncArtifact() { }
+    public ArchivedAsyncArtifact() {
+    }
 
     // jhipster-needle-entity-add-field - JHipster will add fields here
     public Long getId() {
@@ -67,6 +71,19 @@ public class ArchivedAsyncArtifact implements Serializable {
     public void setConsumeTime(ZonedDateTime consumeTime) {
         this.consumeTime = consumeTime;
     }
+
+    public ZonedDateTime getSentTime() {
+        return sentTime;
+    }
+
+    public ArchivedAsyncArtifact sentTime(ZonedDateTime sentTime) {
+        this.sentTime = sentTime;
+        return this;
+    }
+
+    public void setSentTime(ZonedDateTime sentTime) {
+        this.sentTime = sentTime;
+    }
     // jhipster-needle-entity-add-getters-setters - JHipster will add getters and setters here
 
     @Override
@@ -92,6 +109,7 @@ public class ArchivedAsyncArtifact implements Serializable {
             "id=" + getId() +
             ", messageId='" + getMessageId() + "'" +
             ", consumeTime='" + getConsumeTime() + "'" +
+            ", sentTime='" + getSentTime() + "'" +
             "}";
     }
 }

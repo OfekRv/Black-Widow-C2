@@ -18,6 +18,8 @@ import javax.inject.Named;
 import java.awt.image.BufferedImage;
 import java.io.IOException;
 import java.net.URL;
+import java.time.ZoneId;
+import java.time.ZonedDateTime;
 import java.util.Collection;
 
 @Slf4j
@@ -45,7 +47,8 @@ public class TwitterApiListener implements TwitterListener {
         for (Status tweet : tweets) {
             try {
                 IncomingArtifactDto artifact = extractArtifact(tweet, decoder, mapper);
-                bl.processMessage(Long.toString(tweet.getId()), artifact);
+                ZonedDateTime time = ZonedDateTime.ofInstant(tweet.getCreatedAt().toInstant(), ZoneId.systemDefault());
+                bl.processMessage(Long.toString(tweet.getId()), time, artifact);
             } catch (TwitterListenerException e) {
                 e.printStackTrace();
             }

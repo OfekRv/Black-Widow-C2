@@ -85,11 +85,14 @@ public class ArtifactQueryService extends QueryService<Artifact> {
             if (criteria.getId() != null) {
                 specification = specification.and(buildRangeSpecification(criteria.getId(), Artifact_.id));
             }
-            if (criteria.getReceiveTime() != null) {
-                specification = specification.and(buildRangeSpecification(criteria.getReceiveTime(), Artifact_.receiveTime));
-            }
             if (criteria.getContent() != null) {
                 specification = specification.and(buildStringSpecification(criteria.getContent(), Artifact_.content));
+            }
+            if (criteria.getConsumeTime() != null) {
+                specification = specification.and(buildRangeSpecification(criteria.getConsumeTime(), Artifact_.consumeTime));
+            }
+            if (criteria.getSentTime() != null) {
+                specification = specification.and(buildRangeSpecification(criteria.getSentTime(), Artifact_.sentTime));
             }
             if (criteria.getAgentId() != null) {
                 specification = specification.and(buildSpecification(criteria.getAgentId(),

@@ -23,6 +23,8 @@ import javax.inject.Named;
 import java.awt.image.BufferedImage;
 import java.io.IOException;
 import java.io.InputStream;
+import java.time.ZonedDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -31,6 +33,7 @@ import java.util.Map;
 public class TumblrApiListener implements TumblrListener {
     private static final int FIRST_MEDIA = 0;
     private static final int ORIGINAL_SIZE = 0;
+    public static final String DATE_PATTERN = "yyyy-mm-dd hh:mm:ss GMT";
 
     @Inject
     private AsyncArtifactListenerBl bl;
@@ -64,7 +67,8 @@ public class TumblrApiListener implements TumblrListener {
         for (Post post : posts) {
             try {
                 IncomingArtifactDto artifact = extractArtifact(post, decoder, mapper);
-                bl.processMessage(Long.toString(post.getId()), artifact);
+                ZonedDateTime time = ZonedDateTime.parse(post.getDateGMT(), DateTimeFormatter.ofPattern(DATE_PATTERN));
+                bl.processMessage(Long.toString(post.getId()), time, artifact);
             } catch (TwitterListenerException e) {
                 e.printStackTrace();
             }

@@ -5,28 +5,24 @@
     {
       "relationshipName": "agent",
       "otherEntityName": "agent",
-      "relationshipType": "one-to-many",
-      "otherEntityRelationshipName": "artifact"
-    },
-    {
-      "relationshipName": "agent",
-      "otherEntityName": "agent",
       "relationshipType": "many-to-one",
-      "relationshipValidateRules": ["required"],
-      "otherEntityField": "id",
+      "otherEntityField": "ip",
       "otherEntityRelationshipName": "artifact"
     }
   ],
   "fields": [
     {
-      "fieldName": "receiveTime",
-      "fieldType": "ZonedDateTime",
-      "fieldValidateRules": []
-    },
-    {
       "fieldName": "content",
       "fieldType": "String",
       "fieldValidateRules": []
+    },
+    {
+      "fieldName": "consumeTime",
+      "fieldType": "ZonedDateTime"
+    },
+    {
+      "fieldName": "sentTime",
+      "fieldType": "ZonedDateTime"
     }
   ],
   "changelogDate": "20210215192148",

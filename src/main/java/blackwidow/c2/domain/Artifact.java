@@ -1,12 +1,8 @@
 package blackwidow.c2.domain;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
-import com.vladmihalcea.hibernate.type.json.JsonBinaryType;
-import org.hibernate.annotations.Type;
-import org.hibernate.annotations.TypeDef;
 
 import javax.persistence.*;
-import javax.validation.constraints.NotNull;
 import java.io.Serializable;
 import java.time.ZonedDateTime;
 
@@ -15,8 +11,6 @@ import java.time.ZonedDateTime;
  */
 @Entity
 @Table(name = "artifact")
-@TypeDef(name = "jsonb", typeClass = JsonBinaryType.class)
-
 public class Artifact implements Serializable {
 
     private static final long serialVersionUID = 1L;
@@ -26,25 +20,27 @@ public class Artifact implements Serializable {
     @SequenceGenerator(name = "sequenceGenerator")
     private Long id;
 
-    @Column(name = "receive_time")
-    private ZonedDateTime receiveTime;
-
-    @Column(name = "content", columnDefinition = "json")
-    @Type(type = "jsonb")
+    @Column(name = "content")
     private String content;
 
-    @ManyToOne(optional = false)
-    @NotNull
+    @Column(name = "consume_time")
+    private ZonedDateTime consumeTime;
+
+    @Column(name = "sent_time")
+    private ZonedDateTime sentTime;
+
+    @ManyToOne
     @JsonIgnoreProperties(value = "artifacts", allowSetters = true)
     private Agent agent;
 
-    public Artifact() {
+    public Artifact(ZonedDateTime time, String content, Agent sendingAgent) {
+        this.agent = sendingAgent;
+        this.consumeTime = ZonedDateTime.now();
+        this.sentTime = time;
+        this.content = content;
     }
 
-    public Artifact(ZonedDateTime receiveTime, String content, Agent agent) {
-        this.receiveTime = receiveTime;
-        this.content = content;
-        this.agent = agent;
+    public Artifact() {
     }
 
     // jhipster-needle-entity-add-field - JHipster will add fields here
@@ -54,19 +50,6 @@ public class Artifact implements Serializable {
 
     public void setId(Long id) {
         this.id = id;
-    }
-
-    public ZonedDateTime getReceiveTime() {
-        return receiveTime;
-    }
-
-    public Artifact receiveTime(ZonedDateTime receiveTime) {
-        this.receiveTime = receiveTime;
-        return this;
-    }
-
-    public void setReceiveTime(ZonedDateTime receiveTime) {
-        this.receiveTime = receiveTime;
     }
 
     public String getContent() {
@@ -80,6 +63,32 @@ public class Artifact implements Serializable {
 
     public void setContent(String content) {
         this.content = content;
+    }
+
+    public ZonedDateTime getConsumeTime() {
+        return consumeTime;
+    }
+
+    public Artifact consumeTime(ZonedDateTime consumeTime) {
+        this.consumeTime = consumeTime;
+        return this;
+    }
+
+    public void setConsumeTime(ZonedDateTime consumeTime) {
+        this.consumeTime = consumeTime;
+    }
+
+    public ZonedDateTime getSentTime() {
+        return sentTime;
+    }
+
+    public Artifact sentTime(ZonedDateTime sentTime) {
+        this.sentTime = sentTime;
+        return this;
+    }
+
+    public void setSentTime(ZonedDateTime sentTime) {
+        this.sentTime = sentTime;
     }
 
     public Agent getAgent() {
@@ -117,8 +126,9 @@ public class Artifact implements Serializable {
     public String toString() {
         return "Artifact{" +
             "id=" + getId() +
-            ", receiveTime='" + getReceiveTime() + "'" +
             ", content='" + getContent() + "'" +
+            ", consumeTime='" + getConsumeTime() + "'" +
+            ", sentTime='" + getSentTime() + "'" +
             "}";
     }
 }

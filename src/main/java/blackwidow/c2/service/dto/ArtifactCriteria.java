@@ -27,9 +27,11 @@ public class ArtifactCriteria implements Serializable, Criteria {
 
     private LongFilter id;
 
-    private ZonedDateTimeFilter receiveTime;
-
     private StringFilter content;
+
+    private ZonedDateTimeFilter consumeTime;
+
+    private ZonedDateTimeFilter sentTime;
 
     private LongFilter agentId;
 
@@ -38,9 +40,9 @@ public class ArtifactCriteria implements Serializable, Criteria {
 
     public ArtifactCriteria(ArtifactCriteria other) {
         this.id = other.id == null ? null : other.id.copy();
-        this.receiveTime = other.receiveTime == null ? null : other.receiveTime.copy();
         this.content = other.content == null ? null : other.content.copy();
-        this.agentId = other.agentId == null ? null : other.agentId.copy();
+        this.consumeTime = other.consumeTime == null ? null : other.consumeTime.copy();
+        this.sentTime = other.sentTime == null ? null : other.sentTime.copy();
         this.agentId = other.agentId == null ? null : other.agentId.copy();
     }
 
@@ -57,20 +59,28 @@ public class ArtifactCriteria implements Serializable, Criteria {
         this.id = id;
     }
 
-    public ZonedDateTimeFilter getReceiveTime() {
-        return receiveTime;
-    }
-
-    public void setReceiveTime(ZonedDateTimeFilter receiveTime) {
-        this.receiveTime = receiveTime;
-    }
-
     public StringFilter getContent() {
         return content;
     }
 
     public void setContent(StringFilter content) {
         this.content = content;
+    }
+
+    public ZonedDateTimeFilter getConsumeTime() {
+        return consumeTime;
+    }
+
+    public void setConsumeTime(ZonedDateTimeFilter consumeTime) {
+        this.consumeTime = consumeTime;
+    }
+
+    public ZonedDateTimeFilter getSentTime() {
+        return sentTime;
+    }
+
+    public void setSentTime(ZonedDateTimeFilter sentTime) {
+        this.sentTime = sentTime;
     }
 
     public LongFilter getAgentId() {
@@ -80,6 +90,7 @@ public class ArtifactCriteria implements Serializable, Criteria {
     public void setAgentId(LongFilter agentId) {
         this.agentId = agentId;
     }
+
 
     @Override
     public boolean equals(Object o) {
@@ -92,9 +103,9 @@ public class ArtifactCriteria implements Serializable, Criteria {
         final ArtifactCriteria that = (ArtifactCriteria) o;
         return
             Objects.equals(id, that.id) &&
-            Objects.equals(receiveTime, that.receiveTime) &&
             Objects.equals(content, that.content) &&
-            Objects.equals(agentId, that.agentId) &&
+            Objects.equals(consumeTime, that.consumeTime) &&
+            Objects.equals(sentTime, that.sentTime) &&
             Objects.equals(agentId, that.agentId);
     }
 
@@ -102,9 +113,9 @@ public class ArtifactCriteria implements Serializable, Criteria {
     public int hashCode() {
         return Objects.hash(
         id,
-        receiveTime,
         content,
-        agentId,
+        consumeTime,
+        sentTime,
         agentId
         );
     }
@@ -114,9 +125,9 @@ public class ArtifactCriteria implements Serializable, Criteria {
     public String toString() {
         return "ArtifactCriteria{" +
                 (id != null ? "id=" + id + ", " : "") +
-                (receiveTime != null ? "receiveTime=" + receiveTime + ", " : "") +
                 (content != null ? "content=" + content + ", " : "") +
-                (agentId != null ? "agentId=" + agentId + ", " : "") +
+                (consumeTime != null ? "consumeTime=" + consumeTime + ", " : "") +
+                (sentTime != null ? "sentTime=" + sentTime + ", " : "") +
                 (agentId != null ? "agentId=" + agentId + ", " : "") +
             "}";
     }

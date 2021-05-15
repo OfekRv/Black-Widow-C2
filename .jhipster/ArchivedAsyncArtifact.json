@@ -10,6 +10,10 @@
     {
       "fieldName": "consumeTime",
       "fieldType": "ZonedDateTime"
+    },
+    {
+      "fieldName": "sentTime",
+      "fieldType": "ZonedDateTime"
     }
   ],
   "changelogDate": "20210508094123",

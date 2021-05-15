@@ -76,11 +76,14 @@ export const Artifact = (props: IArtifactProps) => {
                 <th className="hand" onClick={sort('id')}>
                   ID <FontAwesomeIcon icon="sort" />
                 </th>
-                <th className="hand" onClick={sort('receiveTime')}>
-                  Receive Time <FontAwesomeIcon icon="sort" />
-                </th>
                 <th className="hand" onClick={sort('content')}>
                   Content <FontAwesomeIcon icon="sort" />
+                </th>
+                <th className="hand" onClick={sort('consumeTime')}>
+                  Consume Time <FontAwesomeIcon icon="sort" />
+                </th>
+                <th className="hand" onClick={sort('sentTime')}>
+                  Sent Time <FontAwesomeIcon icon="sort" />
                 </th>
                 <th>
                   Agent <FontAwesomeIcon icon="sort" />
@@ -96,9 +99,10 @@ export const Artifact = (props: IArtifactProps) => {
                       {artifact.id}
                     </Button>
                   </td>
-                  <td>{artifact.receiveTime ? <TextFormat type="date" value={artifact.receiveTime} format={APP_DATE_FORMAT} /> : null}</td>
                   <td>{artifact.content}</td>
-                  <td>{artifact.agent ? <Link to={`agent/${artifact.agent.id}`}>{artifact.agent.id}</Link> : ''}</td>
+                  <td>{artifact.consumeTime ? <TextFormat type="date" value={artifact.consumeTime} format={APP_DATE_FORMAT} /> : null}</td>
+                  <td>{artifact.sentTime ? <TextFormat type="date" value={artifact.sentTime} format={APP_DATE_FORMAT} /> : null}</td>
+                  <td>{artifact.agent ? <Link to={`agent/${artifact.agent.id}`}>{artifact.agent.ip}</Link> : ''}</td>
                   <td className="text-right">
                     <div className="btn-group flex-btn-group-container">
                       <Button tag={Link} to={`${match.url}/${artifact.id}`} color="info" size="sm">

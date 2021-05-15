@@ -17,10 +17,10 @@ public class AsyncArtifactListenerBl {
     private ArtifactProcessorBl processorBl;
 
     @Transactional
-    public void processMessage(String id, IncomingArtifactDto artifact) {
+    public void processMessage(String id, ZonedDateTime time, IncomingArtifactDto artifact) {
         if (!repository.existsByMessageId(id)) {
-            processorBl.processMessage(artifact);
-            repository.save(new ArchivedAsyncArtifact(id, ZonedDateTime.now()));
+            processorBl.processMessage(artifact, time);
+            repository.save(new ArchivedAsyncArtifact(id, time));
         }
     }
 }

@@ -37,6 +37,14 @@ export const ArchivedAsyncArtifactDetail = (props: IArchivedAsyncArtifactDetailP
               <TextFormat value={archivedAsyncArtifactEntity.consumeTime} type="date" format={APP_DATE_FORMAT} />
             ) : null}
           </dd>
+          <dt>
+            <span id="sentTime">Sent Time</span>
+          </dt>
+          <dd>
+            {archivedAsyncArtifactEntity.sentTime ? (
+              <TextFormat value={archivedAsyncArtifactEntity.sentTime} type="date" format={APP_DATE_FORMAT} />
+            ) : null}
+          </dd>
         </dl>
         <Button tag={Link} to="/archived-async-artifact" replace color="info">
           <FontAwesomeIcon icon="arrow-left" /> <span className="d-none d-md-inline">Back</span>

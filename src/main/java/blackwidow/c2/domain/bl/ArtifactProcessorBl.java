@@ -17,14 +17,14 @@ public class ArtifactProcessorBl {
     @Inject
     private ArtifactRepository artifactRepository;
 
-    public void processMessage(IncomingArtifactDto artifact) {
+    public void processMessage(IncomingArtifactDto artifact, ZonedDateTime time) {
         String agentIp = artifact.getAgentIp();
         Agent sendingAgent = agentRepository.findByIp(agentIp)
-            .orElseGet(() -> agentRepository.save(new Agent(agentIp, ZonedDateTime.now())));
+            .orElseGet(() -> agentRepository.save(new Agent(agentIp, time)));
 
-        artifactRepository.save(new Artifact(ZonedDateTime.now(), artifact.getContent(), sendingAgent));
+        artifactRepository.save(new Artifact(time, artifact.getContent(), sendingAgent));
 
-        sendingAgent.setLastActive(ZonedDateTime.now());
+        sendingAgent.setLastActive(time);
         agentRepository.save(sendingAgent);
     }
 }

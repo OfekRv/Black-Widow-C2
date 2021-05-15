@@ -26,22 +26,29 @@ export const ArtifactDetail = (props: IArtifactDetailProps) => {
         </h2>
         <dl className="jh-entity-details">
           <dt>
-            <span id="receiveTime">Receive Time</span>
-          </dt>
-          <dd>
-            {artifactEntity.receiveTime ? <TextFormat value={artifactEntity.receiveTime} type="date" format={APP_DATE_FORMAT} /> : null}
-          </dd>
-          <dt>
             <span id="content">Content</span>
           </dt>
           <dd>{artifactEntity.content}</dd>
+          <dt>
+            <span id="consumeTime">Consume Time</span>
+          </dt>
+          <dd>
+            {artifactEntity.consumeTime ? <TextFormat value={artifactEntity.consumeTime} type="date" format={APP_DATE_FORMAT} /> : null}
+          </dd>
+          <dt>
+            <span id="sentTime">Sent Time</span>
+          </dt>
+          <dd>{artifactEntity.sentTime ? <TextFormat value={artifactEntity.sentTime} type="date" format={APP_DATE_FORMAT} /> : null}</dd>
           <dt>Agent</dt>
-          <dd>{artifactEntity.agent ? artifactEntity.agent.id : ''}</dd>
+          <dd>{artifactEntity.agent ? artifactEntity.agent.ip : ''}</dd>
         </dl>
         <Button tag={Link} to="/artifact" replace color="info">
           <FontAwesomeIcon icon="arrow-left" /> <span className="d-none d-md-inline">Back</span>
         </Button>
         &nbsp;
+        <Button tag={Link} to={`/artifact/${artifactEntity.id}/edit`} replace color="primary">
+          <FontAwesomeIcon icon="pencil-alt" /> <span className="d-none d-md-inline">Edit</span>
+        </Button>
       </Col>
     </Row>
   );

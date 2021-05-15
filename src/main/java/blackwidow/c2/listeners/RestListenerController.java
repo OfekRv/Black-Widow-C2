@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import javax.inject.Inject;
+import java.time.ZonedDateTime;
 
 
 @RestController
@@ -18,6 +19,6 @@ public class RestListenerController {
 
     @PostMapping("/submit")
     public void submit(@RequestBody IncomingArtifactDto artifact) {
-        bl.processMessage(artifact);
+        bl.processMessage(artifact, ZonedDateTime.now());
     }
 }

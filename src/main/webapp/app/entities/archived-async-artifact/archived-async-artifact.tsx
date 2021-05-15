@@ -29,6 +29,7 @@ export const ArchivedAsyncArtifact = (props: IArchivedAsyncArtifactProps) => {
                 <th>ID</th>
                 <th>Message Id</th>
                 <th>Consume Time</th>
+                <th>Sent Time</th>
                 <th />
               </tr>
             </thead>
@@ -44,6 +45,11 @@ export const ArchivedAsyncArtifact = (props: IArchivedAsyncArtifactProps) => {
                   <td>
                     {archivedAsyncArtifact.consumeTime ? (
                       <TextFormat type="date" value={archivedAsyncArtifact.consumeTime} format={APP_DATE_FORMAT} />
+                    ) : null}
+                  </td>
+                  <td>
+                    {archivedAsyncArtifact.sentTime ? (
+                      <TextFormat type="date" value={archivedAsyncArtifact.sentTime} format={APP_DATE_FORMAT} />
                     ) : null}
                   </td>
                   <td className="text-right">
